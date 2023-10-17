@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "pretty": "prettier ./src",
-    "pretty:fix": "prettier --write ./src"
+    "pretty:fix": "prettier --write ./src",
+    "qa": "yarn lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "13.5.5",
@@ -25,6 +27,7 @@
     "eslint-config-next": "13.5.5",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
     "postcss": "^8",
     "prettier": "^3.0.3",
     "tailwindcss": "^3",
