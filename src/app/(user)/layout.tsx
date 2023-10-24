@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import { FC } from 'react';
+import { Nav } from '@techmeetup/app/_components/ui/Nav';
+import { Container } from '@techmeetup/app/_components/ui/Container';
 
-// TODO: nav shared
 const UserLayout: FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
-    <nav className="flex justify-between items-center bg-red-950 px-8 py-3 h-20">
+    <Nav color="red">
       <Link className="text-white font-bold" href={'/'}>
         Posts
       </Link>
-    </nav>
-    <section className="py-3 container mx-auto">{children}</section>
+    </Nav>
+    <Container>{children}</Container>
   </>
 );
 

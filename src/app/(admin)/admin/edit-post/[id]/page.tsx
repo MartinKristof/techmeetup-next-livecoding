@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { EditPostForm } from './components/EditPostForm';
+import { EditPostForm } from './_components/EditPostForm';
 import { Metadata } from 'next';
-import { getPostById } from '@techmeetup/libs/posts';
+import { getPostById } from '@techmeetup/libs/postsService';
 
 interface EditPostPageProps {
   params: { id: string };

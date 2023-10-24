@@ -3,7 +3,7 @@
 import { FC } from 'react';
 import { useRouter } from 'next/navigation';
 import { TrashIcon } from '@heroicons/react/24/outline';
-import { deletePostById } from '@techmeetup/libs/posts';
+import { deletePostById } from '@techmeetup/libs/postsService';
 
 export const RemoveButton: FC<{ id: string }> = ({ id }) => {
   const router = useRouter();

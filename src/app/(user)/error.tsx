@@ -9,7 +9,7 @@ const Error = ({ error, reset }: { error: Error & { digest?: string }; reset: ()
 
   return (
     <div>
-      <h2>User! Something went wrong!</h2>
+      <h1>User! Something went wrong!</h1>
       <p>{error.message}</p>
       <button onClick={() => reset()}>Try again</button>
     </div>

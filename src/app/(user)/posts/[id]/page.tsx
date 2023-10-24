@@ -1,4 +1,5 @@
-import { getPostById, getPosts } from '@techmeetup/libs/posts';
+import { Container } from '@techmeetup/app/_components/ui/Container';
+import { getPostById, getPosts } from '@techmeetup/libs/postsService';
 import { Metadata } from 'next';
 import React, { FC } from 'react';
 
@@ -17,8 +18,8 @@ export const generateMetadata = async ({ params: { id } }: PostDetailPageProps):
 export const generateStaticParams = async () => {
   const { posts } = await getPosts();
 
-  return posts?.map(({ _id }) => ({
-    id: _id,
+  return posts?.map(({ _id: id }) => ({
+    id,
   }));
 };
 
@@ -29,12 +30,12 @@ const PostDetailPage: FC<PostDetailPageProps> = async ({ params: { id } }) => {
 
   return (
     post && (
-      <div className="container mx-auto">
+      <Container>
         <h1 className="text-2xl">{post.title}</h1>
         <div className="mt-2">
           <p>{post.description}</p>
         </div>
-      </div>
+      </Container>
     )
   );
 };

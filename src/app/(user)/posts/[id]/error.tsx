@@ -1,17 +1,18 @@
 'use client'; // Error components must be Client Components
 
+import Link from 'next/link';
 import { useEffect } from 'react';
 
-const Error = ({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) => {
+const Error = ({ error }: { error: Error & { digest?: string } }) => {
   useEffect(() => {
     console.error(error);
   }, [error]);
 
   return (
     <div>
-      <h1>Admin! Something went wrong!</h1>
+      <h1>User! Something went wrong!</h1>
       <p>{error.message}</p>
-      <button onClick={() => reset()}>Try again</button>
+      <Link href="/">Go back</Link>
     </div>
   );
 };

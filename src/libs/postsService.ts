@@ -1,6 +1,7 @@
 import { TPost } from '@techmeetup/models/post';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+
 export const getPosts = async (options: RequestInit = {}): Promise<{ posts: TPost[] }> => {
   try {
     const response = await fetch(API_URL, options);
@@ -72,7 +73,7 @@ export const addPost = async ({
   }
 };
 
-export const updatePost = async (
+export const updatePostById = async (
   id: string,
   { title, description }: Pick<TPost, 'title' | 'description'>,
 ): Promise<{ message: string } | null> => {

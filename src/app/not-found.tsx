@@ -1,11 +1,12 @@
 import Link from 'next/link';
+import { Container } from '@techmeetup/app/_components/ui/Container';
 
 const NotFound = () => (
-  <div className="container mx-auto py-3">
-    <h1>Not Found</h1>
+  <Container>
+    <h1 className="text-lg">Not Found</h1>
     <p className="py-3">Could not find requested resource</p>
     <Link href="/">Return Home</Link>
-  </div>
+  </Container>
 );
 
 export default NotFound;

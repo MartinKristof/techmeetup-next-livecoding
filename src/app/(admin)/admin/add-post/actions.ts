@@ -1,6 +1,5 @@
 'use server';
-
-import { addPost } from '@techmeetup/libs/posts';
+import { addPost } from '@techmeetup/libs/postsService';
 import { redirect } from 'next/navigation';
 
 export const addPostAction = async (formData: FormData) => {

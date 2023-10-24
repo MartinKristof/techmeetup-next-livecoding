@@ -1,18 +1,13 @@
-import { addPostAction } from './action';
+import { Input } from '@techmeetup/app/_components/ui/Input';
+import { addPostAction } from './actions';
+import { SubmitButton } from '@techmeetup/app/_components/ui/SubmitButton';
+import { Form } from '@techmeetup/app/_components/ui/Form';
 
 const AddPostPage = () => (
-  <form action={addPostAction} className="flex flex-col gap-3">
-    <input name="title" className="border border-slate-500 px-8 py-2" type="text" placeholder="Post Title" required />
-    <input
-      name="description"
-      className="border border-slate-500 px-8 py-2"
-      type="text"
-      placeholder="Post Description"
-      required
-    />
-    <button type="submit" className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
-      Add Post
-    </button>
-  </form>
+  <Form action={addPostAction}>
+    <Input name="title" placeholder="Post Title" />
+    <Input name="description" placeholder="Description Title" />
+    <SubmitButton>Add Post</SubmitButton>
+  </Form>
 );
 export default AddPostPage;
