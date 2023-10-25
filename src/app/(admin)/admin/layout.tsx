@@ -5,7 +5,7 @@ import { FC } from 'react';
 
 const AdminLayout: FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
-    <Nav color="blue">
+    <Nav dark>
       <Link className="text-white font-bold" href="/admin">
         Posts
       </Link>

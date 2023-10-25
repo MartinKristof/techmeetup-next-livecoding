@@ -5,7 +5,7 @@ import { Container } from '@techmeetup/app/_components/ui/Container';
 
 const UserLayout: FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
-    <Nav color="red">
+    <Nav>
       <Link className="text-white font-bold" href={'/'}>
         Posts
       </Link>
