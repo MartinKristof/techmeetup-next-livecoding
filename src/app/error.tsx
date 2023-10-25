@@ -1,11 +1,9 @@
 'use client'; // Error components must be Client Components
 
-import { useEffect } from 'react';
+import { useErrorLog } from '@techmeetup/app/_hooks/useErrorLog';
 
 const Error = ({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) => {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
+  useErrorLog(error);
 
   return (
     <div>
