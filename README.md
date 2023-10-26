@@ -1,6 +1,11 @@
+# TechMeetup Ostrava 23 - Next.js 13 - React server components
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+
+* Create [Mongo DB](mongodb.com)
+* Add value of Mongo URI to MONGODB_URI variable in `.env` file
 
 First, run the development server:
 
