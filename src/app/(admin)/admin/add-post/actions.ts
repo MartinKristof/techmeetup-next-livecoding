@@ -1,5 +1,5 @@
 'use server';
-import { addPost } from '@techmeetup/libs/postsService';
+import { addPost } from '@techmeetup/libs/postsQuery';
 import { redirect } from 'next/navigation';
 
 export const addPostAction = async (formData: FormData) => {
@@ -9,5 +9,7 @@ export const addPostAction = async (formData: FormData) => {
 
   if (response) {
     redirect('/admin');
+  } else {
+    throw new Error('Something went wrong during adding');
   }
 };
