@@ -1,47 +1,31 @@
 'use client';
 
-import { FC, ReactNode, SyntheticEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useFormState } from 'react-dom';
+import { FC, ReactNode, useState } from 'react';
 import { Input } from '@techmeetup/app/_components/ui/Input';
 import { SubmitButton } from '@techmeetup/app/_components/ui/SubmitButton';
 import { Form } from '@techmeetup/app/_components/ui/Form';
+import { editPostAction } from '../actions';
+import { Alert } from '@techmeetup/app/_components/ui/Alert';
+
+const initialState = {
+  message: null,
+};
 
 export const EditPostForm: FC<{
   children: ReactNode;
   id: string;
   title: string;
   description: string;
-  onSubmit: ({
-    id,
-    title,
-    description,
-  }: {
-    id: string;
-    title: string;
-    description: string;
-  }) => Promise<{ message: string }>;
-}> = ({ children, id, title, description, onSubmit }) => {
+}> = ({ children, id, title, description }) => {
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(description);
-
-  const router = useRouter();
-
-  const handleSubmit = async (event: SyntheticEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const response = await onSubmit({ id, title: newTitle, description: newDescription });
-
-    if (response) {
-      router.push('/admin');
-      router.refresh();
-    } else {
-      alert('Something went wrong during editing');
-    }
-  };
+  const [state, formAction] = useFormState(editPostAction.bind(null, id), initialState);
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form action={formAction}>
+        {/* <Input type="hidden" name="id" value={id} /> */}
         <Input name="title" onChange={value => setNewTitle(value)} value={newTitle} placeholder="Post Title" />
         <Input
           name="description"
@@ -50,6 +34,7 @@ export const EditPostForm: FC<{
           placeholder="Description Title"
         />
         <SubmitButton>Update Post</SubmitButton>
+        {state?.message && <Alert message={state.message} />}
       </Form>
       {children}
     </>
