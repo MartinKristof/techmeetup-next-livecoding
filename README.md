@@ -1,4 +1,4 @@
-# TechMeetup Ostrava 23 - Next.js 13 - React server components
+# TechMeetup Ostrava 23 - Next.js 14 - React server components & Server actions
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
