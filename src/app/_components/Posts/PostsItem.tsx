@@ -3,21 +3,8 @@ import { RemoveButton } from '../RemoveButton';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { FC } from 'react';
 import { Favorite } from './Favorite';
-import { deletePostById } from '@techmeetup/libs/postsQuery';
-import { getFavoritesFromCookies, isInFavorites, setFavoritesToCookies } from '@techmeetup/libs/favorites';
-
-const toggleFavorite = async (id: string) => {
-  'use server';
-  const favorites = getFavoritesFromCookies();
-
-  let newFavorites = [...favorites.favorites, id];
-
-  if (isInFavorites(id)) {
-    newFavorites = favorites.favorites.filter((favId: string) => favId !== id);
-  }
-
-  setFavoritesToCookies(newFavorites);
-};
+import { isInFavorites } from '@techmeetup/libs/favorites';
+import { deletePost, toggleFavorite } from './actions';
 
 export const PostsItem: FC<{
   id: string;
@@ -42,7 +29,7 @@ export const PostsItem: FC<{
     <div className="flex gap-2">
       {isAdmin ? (
         <>
-          <RemoveButton id={id.toString()} onClick={deletePostById} />
+          <RemoveButton id={id.toString()} onClick={deletePost} />
           <Link href={`/admin/edit-post/${id.toString()}`}>
             <PencilSquareIcon className="h-6 w-6" />
           </Link>

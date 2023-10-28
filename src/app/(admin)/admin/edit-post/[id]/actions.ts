@@ -1,6 +1,7 @@
 'use server';
 
 import { updatePostById } from '@techmeetup/libs/postsQuery';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export const editPostAction = async (
@@ -27,6 +28,8 @@ export const editPostAction = async (
     return { message: 'Something went wrong during update' };
   } finally {
     if (success) {
+      revalidatePath('/admin');
+      revalidatePath('/');
       redirect('/admin');
     }
   }

@@ -1,5 +1,6 @@
 'use server';
 import { addPost } from '@techmeetup/libs/postsQuery';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export const addPostAction = async (formData: FormData) => {
@@ -8,6 +9,8 @@ export const addPostAction = async (formData: FormData) => {
   const response = await addPost({ title, description });
 
   if (response) {
+    revalidatePath('/admin');
+    revalidatePath('/');
     redirect('/admin');
   } else {
     throw new Error('Something went wrong during adding');

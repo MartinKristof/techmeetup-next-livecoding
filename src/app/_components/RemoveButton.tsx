@@ -1,21 +1,13 @@
 'use client';
 
 import { FC } from 'react';
-import { useRouter } from 'next/navigation';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
-export const RemoveButton: FC<{ id: string; onClick: (id: string) => Promise<{ message: string }> }> = ({
-  id,
-  onClick,
-}) => {
-  const router = useRouter();
-
+export const RemoveButton: FC<{ id: string; onClick: (id: string) => Promise<void> }> = ({ id, onClick }) => {
   const handleRemovePost = async () => {
-    const response = await onClick(id);
-
-    if (response) {
-      router.refresh();
-    } else {
+    try {
+      await onClick(id);
+    } catch (error) {
       alert('Something went wrong during deletion');
     }
   };

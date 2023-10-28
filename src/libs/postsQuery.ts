@@ -38,7 +38,6 @@ export const addPost = async ({
 };
 
 export const deletePostById = async (id: string): Promise<{ message: string }> => {
-  'use server';
   try {
     await connectMongoDB();
     await Post.findByIdAndDelete<TPost>(id);
@@ -58,7 +57,6 @@ export const updatePostById = async ({
   title: string;
   description: string;
 }): Promise<{ message: string }> => {
-  'use server';
   try {
     await connectMongoDB();
     await Post.findByIdAndUpdate<TPost>(id, { title, description });
