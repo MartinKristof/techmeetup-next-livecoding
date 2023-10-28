@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { EditPostForm } from './_components/EditPostForm';
 import { Metadata } from 'next';
 import { getPostById } from '@techmeetup/libs/postsQuery';
+import { notFound } from 'next/navigation';
 import { FavoritesStatus } from './_components/FavoritesStatus';
 
 interface EditPostPageProps {
@@ -19,10 +20,12 @@ export const generateMetadata = async ({ params: { id } }: EditPostPageProps): P
 const EditPostPage: FC<EditPostPageProps> = async ({ params: { id } }) => {
   const { post } = await getPostById(id);
 
-  return (
+  return post ? (
     <EditPostForm id={id} title={post?.title || ''} description={post?.description || ''}>
       <FavoritesStatus id={id} />
     </EditPostForm>
+  ) : (
+    notFound()
   );
 };
 

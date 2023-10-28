@@ -30,6 +30,7 @@ export const editPostAction = async (
     if (success) {
       revalidatePath('/admin');
       revalidatePath('/');
+      revalidatePath(`/posts/${id}`);
       redirect('/admin');
     }
   }
