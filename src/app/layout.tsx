@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 import { FC } from 'react';
 import { Footer } from './_components/Footer';
@@ -16,6 +17,7 @@ const RootLayout: FC<{ children: React.ReactNode }> = ({ children }) => (
     <body className={`${inter.className} min-h-screen`}>
       {children}
       <Footer />
+      <Analytics />
     </body>
   </html>
 );
