@@ -6,7 +6,7 @@ import { Input } from '@techmeetup/app/_components/ui/Input';
 import { SubmitButton } from '@techmeetup/app/_components/ui/SubmitButton';
 import { Form } from '@techmeetup/app/_components/ui/Form';
 import { editPostAction } from '../actions';
-import { Alert } from '@techmeetup/app/_components/ui/Alert';
+import { useNotification } from '@techmeetup/app/_hooks/useNotification';
 
 const initialState = {
   message: null,
@@ -21,10 +21,21 @@ export const EditPostForm: FC<{
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(description);
   const [state, formAction] = useFormState(editPostAction.bind(null, id), initialState);
+  const { showError, showSuccess } = useNotification();
 
   return (
     <>
-      <Form action={formAction}>
+      <Form
+        action={async (formData: FormData) => {
+          formAction(formData);
+
+          if (state.status === 'error') {
+            showError(state.message);
+          } else {
+            showSuccess('Post updated!', true);
+          }
+        }}
+      >
         {/* <Input type="hidden" name="id" value={id} /> */}
         <Input name="title" onChange={value => setNewTitle(value)} value={newTitle} placeholder="Post Title" />
         <Input
@@ -34,7 +45,6 @@ export const EditPostForm: FC<{
           placeholder="Description Title"
         />
         <SubmitButton>Update Post</SubmitButton>
-        {state?.message && <Alert message={state.message} />}
       </Form>
       {children}
     </>

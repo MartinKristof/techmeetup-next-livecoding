@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 import { FC } from 'react';
 import { Footer } from './_components/Footer';
+import { NotificationProvider } from './_contexts/NotificationContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 const RootLayout: FC<{ children: React.ReactNode }> = ({ children }) => (
   <html lang="en" className="min-h-screen">
     <body className={`${inter.className} min-h-screen`}>
-      {children}
+      <NotificationProvider>{children}</NotificationProvider>
       <Footer />
       <Analytics />
     </body>
