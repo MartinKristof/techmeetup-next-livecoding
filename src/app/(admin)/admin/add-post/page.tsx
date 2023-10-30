@@ -5,29 +5,36 @@ import { addPostAction } from './actions';
 import { SubmitButton } from '@techmeetup/app/_components/ui/SubmitButton';
 import { Form } from '@techmeetup/app/_components/ui/Form';
 import { useFormState } from 'react-dom';
-import { Alert } from '@techmeetup/app/_components/ui/Alert';
-import { STATUSES } from '@techmeetup/app/_contexts/NotificationContext';
+import { useNotification } from '@techmeetup/app/_hooks/useNotification';
+import { redirect } from 'next/navigation';
+import { useEffect } from 'react';
+import { STATUSES } from '@techmeetup/libs/constants';
 
 const initialState = {
   message: null,
+  status: null,
 };
 
 const AddPostPage = () => {
   const [state, formAction] = useFormState(addPostAction, initialState);
+  const { showError, showSuccess } = useNotification();
+
+  useEffect(() => {
+    if (state.status === STATUSES.Success) {
+      showSuccess(state.message, true);
+
+      redirect('/admin');
+    } else if (state.status === STATUSES.Error) {
+      showError(state.message);
+    }
+  }, [showError, showSuccess, state, state.message, state.status]);
 
   return (
-    <>
-      {state.message && (
-        <div className="my-5">
-          <Alert status={STATUSES.Error} message={state.message} closeEnabled={false} />
-        </div>
-      )}
-      <Form action={formAction}>
-        <Input name="title" placeholder="Post Title" />
-        <Input name="description" placeholder="Description Title" />
-        <SubmitButton>Add Post</SubmitButton>
-      </Form>
-    </>
+    <Form action={formAction}>
+      <Input name="title" placeholder="Post Title" />
+      <Input name="description" placeholder="Description Title" />
+      <SubmitButton>Add Post</SubmitButton>
+    </Form>
   );
 };
 export default AddPostPage;

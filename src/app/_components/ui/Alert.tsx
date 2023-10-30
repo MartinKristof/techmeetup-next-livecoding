@@ -1,6 +1,6 @@
-import { STATUSES } from '@techmeetup/app/_contexts/NotificationContext';
-import { useNotification } from '@techmeetup/app/_hooks/useNotification';
 import { FC, useEffect } from 'react';
+import { useNotification } from '@techmeetup/app/_hooks/useNotification';
+import { STATUSES } from '@techmeetup/libs/constants';
 
 const AUTOCLOSE_TIMEOUT = 3000;
 

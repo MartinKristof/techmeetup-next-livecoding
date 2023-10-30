@@ -1,8 +1,8 @@
 'use server';
 
+import { STATUSES } from '@techmeetup/libs/constants';
 import { updatePostById } from '@techmeetup/libs/postsQuery';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 export const editPostAction = async (
   id: string,
@@ -14,26 +14,18 @@ export const editPostAction = async (
   const title = formData.get('title') as string;
   const description = formData.get('description') as string;
 
-  let success = false;
   try {
     const response = await updatePostById({ id, title, description });
-
     if (response) {
-      success = true;
-      return { status: 'ok', message: '' };
+      revalidatePath('/', 'layout');
+
+      return { status: STATUSES.Success, message: response.message };
     }
   } catch (error) {
     if (error instanceof Error) {
-      return { status: 'error', message: error.message };
+      return { status: STATUSES.Error, message: error.message };
     }
 
-    return { status: 'error', message: 'Something went wrong during update' };
-  } finally {
-    if (success) {
-      revalidatePath('/admin');
-      revalidatePath('/');
-      revalidatePath(`/posts/${id}`);
-      redirect('/admin');
-    }
+    return { status: STATUSES.Error, message: 'Something went wrong during update' };
   }
 };

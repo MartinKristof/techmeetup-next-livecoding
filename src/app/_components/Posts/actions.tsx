@@ -18,8 +18,7 @@ export const toggleFavorite = async (id: string) => {
 
 export const deletePost = async (id: string) => {
   await deletePostById(id);
-  revalidatePath('/admin');
-  revalidatePath('/');
+  revalidatePath('/', 'layout');
 
   if (isInFavorites(id)) {
     toggleFavorite(id);

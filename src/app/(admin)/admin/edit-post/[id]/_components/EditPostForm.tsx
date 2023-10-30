@@ -1,15 +1,18 @@
 'use client';
 
 import { useFormState } from 'react-dom';
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import { Input } from '@techmeetup/app/_components/ui/Input';
 import { SubmitButton } from '@techmeetup/app/_components/ui/SubmitButton';
 import { Form } from '@techmeetup/app/_components/ui/Form';
 import { editPostAction } from '../actions';
 import { useNotification } from '@techmeetup/app/_hooks/useNotification';
+import { redirect } from 'next/navigation';
+import { STATUSES } from '@techmeetup/libs/constants';
 
 const initialState = {
   message: null,
+  status: null,
 };
 
 export const EditPostForm: FC<{
@@ -23,19 +26,19 @@ export const EditPostForm: FC<{
   const [state, formAction] = useFormState(editPostAction.bind(null, id), initialState);
   const { showError, showSuccess } = useNotification();
 
+  useEffect(() => {
+    if (state.status === STATUSES.Success) {
+      showSuccess(state.message, true);
+
+      redirect('/admin');
+    } else if (state.status === STATUSES.Error) {
+      showError(state.message);
+    }
+  }, [showError, showSuccess, state, state.message, state.status]);
+
   return (
     <>
-      <Form
-        action={async (formData: FormData) => {
-          formAction(formData);
-
-          if (state.status === 'error') {
-            showError(state.message);
-          } else {
-            showSuccess('Post updated!', true);
-          }
-        }}
-      >
+      <Form action={formAction}>
         {/* <Input type="hidden" name="id" value={id} /> */}
         <Input name="title" onChange={value => setNewTitle(value)} value={newTitle} placeholder="Post Title" />
         <Input

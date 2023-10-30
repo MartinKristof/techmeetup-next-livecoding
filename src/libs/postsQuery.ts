@@ -31,7 +31,7 @@ export const addPost = async ({
     await connectMongoDB();
     await Post.create<TPost>({ title, description });
 
-    return { message: 'Post added' };
+    return { message: 'Post added!' };
   } catch (error) {
     throw new Error('Failed to add post');
   }

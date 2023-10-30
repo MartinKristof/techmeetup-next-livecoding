@@ -1,11 +1,7 @@
 'use client';
 
 import { FC, ReactNode, createContext, useCallback, useReducer } from 'react';
-
-export enum STATUSES {
-  Success = 'Success',
-  Error = 'Error',
-}
+import { STATUSES } from '@techmeetup/libs/constants';
 
 export const NotificationContext = createContext<{
   status: STATUSES | null;
