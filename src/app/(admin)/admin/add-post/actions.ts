@@ -15,9 +15,8 @@ export const addPostAction = async (
   try {
     const response = await addPost({ title, description });
     if (response) {
-      // revalidatePath('/posts', 'page');
-      // revalidatePath('/admin', 'page');
-      revalidatePath('/', 'layout'); // Vercel workaround
+      revalidatePath('/posts', 'page');
+      revalidatePath('/admin', 'page');
 
       return { status: STATUSES.Success, message: response.message };
     }

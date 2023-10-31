@@ -17,10 +17,9 @@ export const editPostAction = async (
   try {
     const response = await updatePostById({ id, title, description });
     if (response) {
-      // revalidatePath(`/posts/${id}`);
-      // revalidatePath('/posts', 'page');
-      // revalidatePath('/admin', 'page');
-      revalidatePath('/', 'layout'); // Vercel workaround
+      revalidatePath('/posts', 'page');
+      revalidatePath('/admin', 'page');
+      revalidatePath('/(user)/posts/[id]', 'page');
 
       return { status: STATUSES.Success, message: response.message };
     }
