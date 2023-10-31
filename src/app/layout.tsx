@@ -4,7 +4,6 @@ import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 import { FC } from 'react';
 import { Footer } from './_components/Footer';
-import { NotificationProvider } from './_contexts/NotificationContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
