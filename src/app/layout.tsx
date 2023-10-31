@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const RootLayout: FC<{ children: React.ReactNode }> = ({ children }) => (
   <html lang="en" className="min-h-screen">
     <body className={`${inter.className} min-h-screen`}>
-      <NotificationProvider>{children}</NotificationProvider>
+      {children}
       <Footer />
       <Analytics />
     </body>

@@ -15,7 +15,8 @@ export const addPostAction = async (
   try {
     const response = await addPost({ title, description });
     if (response) {
-      revalidatePath('/', 'layout');
+      revalidatePath('/posts', 'page');
+      revalidatePath('/admin', 'page');
 
       return { status: STATUSES.Success, message: response.message };
     }

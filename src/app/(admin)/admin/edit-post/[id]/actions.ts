@@ -17,7 +17,9 @@ export const editPostAction = async (
   try {
     const response = await updatePostById({ id, title, description });
     if (response) {
-      revalidatePath('/', 'layout');
+      revalidatePath(`/posts/${id}`);
+      revalidatePath('/posts', 'page');
+      revalidatePath('/admin', 'page');
 
       return { status: STATUSES.Success, message: response.message };
     }
