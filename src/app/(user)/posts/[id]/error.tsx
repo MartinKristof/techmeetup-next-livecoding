@@ -10,7 +10,7 @@ const Error = ({ error }: { error: Error & { digest?: string } }) => {
     <div>
       <h1>User! Something went wrong!</h1>
       <p>{error.message}</p>
-      <Link href="/">Go back</Link>
+      <Link href="/posts">Go back</Link>
     </div>
   );
 };

@@ -19,10 +19,8 @@ export const FooterNav = () => {
       </li>
       <li>
         <Link
-          href="/"
-          className={`mr-4 hover:underline md:mr-6 ${
-            pathname === '/' || pathname.includes('/posts') ? activeClasses : ''
-          }`}
+          href="/posts"
+          className={`mr-4 hover:underline md:mr-6 ${pathname.includes('/posts') ? activeClasses : ''}`}
         >
           User
         </Link>
