@@ -13,7 +13,7 @@ export const generateMetadata = async ({ params: { id } }: EditPostPageProps): P
   const { post } = await getPostById(id);
 
   return {
-    title: `Edit Post ${post?.title || id}`,
+    title: `Post! TechMeetup - Edit Post ${post?.title || id}`,
   };
 };
 

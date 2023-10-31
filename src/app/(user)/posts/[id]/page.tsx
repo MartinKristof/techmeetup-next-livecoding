@@ -12,7 +12,7 @@ export const generateMetadata = async ({ params: { id } }: PostDetailPageProps):
   const { post } = await getPostById(id);
 
   return {
-    title: `Post ${post?.title || id} detail`,
+    title: `Post! TechMeetup - Post ${post?.title || id} detail`,
   };
 };
 
