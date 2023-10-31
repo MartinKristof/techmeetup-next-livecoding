@@ -18,7 +18,10 @@ export const toggleFavorite = async (id: string) => {
 
 export const deletePost = async (id: string) => {
   await deletePostById(id);
-  revalidatePath('/', 'layout');
+  // revalidatePath(`/posts/${id}`);
+  // revalidatePath('/posts', 'page');
+  // revalidatePath('/admin', 'page');
+  revalidatePath('/', 'layout'); // Vercel workaround
 
   if (isInFavorites(id)) {
     toggleFavorite(id);
