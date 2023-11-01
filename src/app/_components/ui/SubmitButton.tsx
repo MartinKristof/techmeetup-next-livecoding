@@ -7,7 +7,7 @@ export const SubmitButton: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <button
       type="submit"
-      className={`bg-green-600 font-bold text-white py-3 px-6 w-fit ${pending ? 'disabled:opacity-50' : ''}`}
+      className={`bg-green-600 font-bold text-white py-3 px-6 w-fit rounded ${pending ? 'disabled:opacity-50' : ''}`}
       aria-disabled={pending}
       disabled={pending}
     >

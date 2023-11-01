@@ -31,8 +31,8 @@ const AddPostPage = () => {
 
   return (
     <Form action={formAction}>
-      <Input name="title" placeholder="Post Title" />
-      <Input name="description" placeholder="Description Title" />
+      <Input label="Post title" name="title" placeholder="Foo" />
+      <Input label="Post description" name="description" placeholder="Bar" />
       <SubmitButton>Add Post</SubmitButton>
     </Form>
   );
