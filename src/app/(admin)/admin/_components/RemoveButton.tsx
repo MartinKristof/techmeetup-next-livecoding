@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { TrashIcon } from '@heroicons/react/24/outline';
-import { useNotification } from '../_hooks/useNotification';
+import { useNotification } from '../../../_hooks/useNotification';
 
 export const RemoveButton: FC<{ id: string; onClick: (id: string) => Promise<void> }> = ({ id, onClick }) => {
   const { showSuccess, showError } = useNotification();

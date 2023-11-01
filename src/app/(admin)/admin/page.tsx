@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const AdminPostsPage: FC = async () => {
   const { posts } = await getPosts();
 
-  return <PostList posts={posts} isAdmin />;
+  return <PostList posts={posts} />;
 };
 
 export default AdminPostsPage;

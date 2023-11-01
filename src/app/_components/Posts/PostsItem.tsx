@@ -1,42 +1,29 @@
-import Link from 'next/link';
-import { RemoveButton } from '../RemoveButton';
-import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import { RemoveButton } from '../../(admin)/admin/_components/RemoveButton';
 import { FC } from 'react';
-import { Favorite } from './Favorite';
-import { isInFavorites } from '@techmeetup/libs/favorites';
-import { deletePost, toggleFavorite } from './actions';
+import { deletePostById } from '@techmeetup/libs/postsQuery';
+import { revalidatePath } from 'next/cache';
+
+const deletePost = async (id: string) => {
+  'use server';
+  await deletePostById(id);
+
+  revalidatePath('/posts', 'page');
+  revalidatePath('/admin', 'page');
+  revalidatePath('/(user)/posts/[id]', 'page');
+};
 
 export const PostsItem: FC<{
   id: string;
   title?: string;
   description?: string;
-  isAdmin: boolean;
-}> = ({ id, title, description, isAdmin }) => (
+}> = ({ id, title, description }) => (
   <div className="p-4 border border-stone-700 rounded my-3 flex justify-between gap-5 items-start">
-    {isAdmin ? (
-      <div>
-        {title && <h2 className="font-bold text-2xl">{title}</h2>}
-        {description && <div>{description}</div>}
-      </div>
-    ) : (
-      <Link href={`/posts/${id.toString()}`}>
-        <div>
-          {title && <h2 className="font-bold text-2xl">{title}</h2>}
-          {description && <div>{description}</div>}
-        </div>
-      </Link>
-    )}
+    <div>
+      {title && <h2 className="font-bold text-2xl">{title}</h2>}
+      {description && <div>{description}</div>}
+    </div>
     <div className="flex gap-2">
-      {isAdmin ? (
-        <>
-          <RemoveButton id={id.toString()} onClick={deletePost} />
-          <Link href={`/admin/edit-post/${id.toString()}`}>
-            <PencilSquareIcon className="h-6 w-6" />
-          </Link>
-        </>
-      ) : (
-        <Favorite toggleFavorite={toggleFavorite} id={id} isFavorite={isInFavorites(id)} />
-      )}
+      <RemoveButton id={id.toString()} onClick={deletePost} />
     </div>
   </div>
 );

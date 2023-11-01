@@ -30,14 +30,6 @@ export const FooterNav = () => {
           Admin
         </Link>
       </li>
-      <li>
-        <Link
-          href="/posts"
-          className={`mr-4 hover:underline md:mr-6 ${pathname.includes('/posts') ? activeClasses : ''}`}
-        >
-          User
-        </Link>
-      </li>
     </ul>
   );
 };
