@@ -2,19 +2,9 @@
 
 import { FC } from 'react';
 import { TrashIcon } from '@heroicons/react/24/outline';
-import { useNotification } from '../../../_hooks/useNotification';
 
 export const RemoveButton: FC<{ id: string; onClick: (id: string) => Promise<void> }> = ({ id, onClick }) => {
-  const { showSuccess, showError } = useNotification();
-
-  const handleRemovePost = async () => {
-    try {
-      await onClick(id);
-      showSuccess('Post removed', true);
-    } catch (error) {
-      showError('Something went wrong during deletion');
-    }
-  };
+  const handleRemovePost = async () => {};
 
   return (
     <button type="button" onClick={handleRemovePost} className="text-red-400">
