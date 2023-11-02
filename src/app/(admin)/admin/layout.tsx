@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import { Notification } from '@techmeetup/app/_components/Notification';
 import { Container } from '@techmeetup/app/_components/ui/Container';
 import { Nav } from '@techmeetup/app/_components/ui/Nav';
+import { NotificationProvider } from '@techmeetup/app/_contexts/NotificationContext';
 
 const AdminLayout: FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
@@ -13,7 +15,12 @@ const AdminLayout: FC<{ children: React.ReactNode }> = ({ children }) => (
         Add Post
       </Link>
     </Nav>
-    <Container>{children}</Container>
+    <Container>
+      <NotificationProvider>
+        <Notification />
+        {children}
+      </NotificationProvider>
+    </Container>
   </>
 );
 
